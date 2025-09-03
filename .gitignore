@@ -1,0 +1,6 @@
+*venv*/
+**/*.egg-info/*
+*.pyc
+.coverage
+scratch_pad.py
+.vscode/*

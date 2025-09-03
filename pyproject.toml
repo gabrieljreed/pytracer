@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytracer"
+version = "0.1.0"
+authors = [{name = "Gabe Reed", email = "gabrieljreed@gmail.com"}]
+description = "Python raytracer"
+keywords = []
+readme = "README.md"
+requires-python = ">=3.6"
+dependencies = []
+
+[tool.isort]
+profile = "black"
+
+[project.urls]
+"Homepage" = "https://github.com/gabrieljreed/pytracer"
+"Bug Tracker" = "https://github.com/gabrieljreed/pytracer/issues"
