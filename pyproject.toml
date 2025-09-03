@@ -18,3 +18,21 @@ profile = "black"
 [project.urls]
 "Homepage" = "https://github.com/gabrieljreed/pytracer"
 "Bug Tracker" = "https://github.com/gabrieljreed/pytracer/issues"
+
+[tool.ruff]
+exclude = [
+    ".git",
+    "dist",
+    "site-packages",
+    "venv",
+]
+line-length = 119
+indent-width = 4
+
+[tool.ruff.lint]
+ignore = ["D105"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
