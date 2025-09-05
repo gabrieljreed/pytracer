@@ -11,6 +11,6 @@ class Ray:
     origin: Point
     direction: Vector3
 
-    def at(self, t: float) -> float:
+    def at(self, t: float) -> Vector3:
         """Get the value along the ray at a given point."""
         return self.origin + (t * self.direction)

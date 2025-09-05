@@ -1,10 +1,25 @@
 """Run pytracer."""
 
+import math
 from pathlib import Path
 
 from pytracer.color import Color
 from pytracer.ray import Ray
 from pytracer.vector3 import Point, Vector3
+
+
+def hit_sphere(center: Point, radius: float, ray: Ray):
+    """Check if a ray hits a sphere."""
+    oc = center - ray.origin
+    a = Vector3.dot(ray.direction, ray.direction)
+    b = -2 * Vector3.dot(ray.direction, oc)
+    c = Vector3.dot(oc, oc) - (radius * radius)
+    discriminant = b * b - 4 * a * c
+
+    if discriminant < 0:
+        return -1
+    else:
+        return (-b - math.sqrt(discriminant)) / (2.0 * a)
 
 
 def lerp(a, b, alpha):
@@ -14,6 +29,14 @@ def lerp(a, b, alpha):
 
 def ray_color(ray: Ray) -> Color:
     """Get the color for a given ray."""
+    t = hit_sphere(Point(0, 0, -1), 0.5, ray)
+    if t > 0.0:
+        normal = ray.at(t) - Vector3(0, 0, -1)
+        normal_unit = normal.unit()
+        color_vector = Vector3(normal_unit.x + 1, normal_unit.y + 1, normal_unit.z + 1) * 0.5
+        color = Color(color_vector.x, color_vector.y, color_vector.z)
+        return color
+
     a = 0.5 * (ray.direction.unit().y + 1.0)
     return Color(*lerp(Color(1.0, 1.0, 1.0), Color(0.5, 0.7, 1.0), a))
 
