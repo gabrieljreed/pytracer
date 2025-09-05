@@ -11,15 +11,15 @@ from pytracer.vector3 import Point, Vector3
 def hit_sphere(center: Point, radius: float, ray: Ray):
     """Check if a ray hits a sphere."""
     oc = center - ray.origin
-    a = Vector3.dot(ray.direction, ray.direction)
-    b = -2 * Vector3.dot(ray.direction, oc)
-    c = Vector3.dot(oc, oc) - (radius * radius)
-    discriminant = b * b - 4 * a * c
+    a = ray.direction.length_squared()
+    h = Vector3.dot(ray.direction, oc)
+    c = oc.length_squared() - (radius * radius)
+    discriminant = (h * h) - (a * c)
 
     if discriminant < 0:
-        return -1
+        return -1.0
     else:
-        return (-b - math.sqrt(discriminant)) / (2.0 * a)
+        return (h - math.sqrt(discriminant)) / a
 
 
 def lerp(a, b, alpha):
